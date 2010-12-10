@@ -1,1 +1,15 @@
+#if 0
 print 'hello'
+'''
+#endif
+
+#include <stdio.h>
+
+int main(void)
+{
+    printf("hello\n");
+}
+
+#if 0
+'''
+#endif
