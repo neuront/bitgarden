@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+
+{% block title %}Index{% endblock %}
+
+{% block head %}
+<link rel='stylesheet' href='/static/message.css' type='text/css'>
+{% endblock %}
+
+{% block body %}
+{% include 'list-topics.html' %}
+<form action='addtopic' method='post'>
+    <table>
+        <tr>
+            <td>Title</td>
+            <td><input type='text' name='title'></td>
+        </tr>
+        <tr>
+            <td>Tags</td>
+            <td>
+                <input type='text' name='tags' placeholder=
+                  'Separate tags with comma, like &quot;Python, Mongodb&quot;'>
+            </td>
+        </tr>
+        <tr>
+            <td>Content</td>
+            <td><textarea name='content'></textarea></td>
+        </tr>
+        <tr>
+            <td colspan='2'><input type='submit'></td>
+        </tr>
+    </table>
+</form>
+<hr>
+<form action='/search' method='get'>
+    Quick search by title:
+    <input type='text' name='title'>
+    <input type='submit'>
+</form>
+{% endblock %}

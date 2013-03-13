@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ topic.title|e }} - Topic View{% endblock %}
+
+{% block head %}
+<link rel='stylesheet' href='/static/message.css' type='text/css'>
+<style>
+.comment_div {
+    border-bottom: 1px dotted #444;
+}
+</style>
+{% endblock %}
+
+{% block body %}
+<div class='message'>
+    <h1>{{ topic.title|e }}</h1>
+    <p class='date'>{{ topic.post_time }}</p>
+    <p>
+        {% for tag in topic.tags %}
+        <span class='tag'>{{ tag|e }}</span>
+        {% endfor %}
+    </p>
+    <p>{{ topic.content|e }}</p>
+</div>
+{% if topic.comments|length %}
+Comments:
+{% endif %}
+{% for comment in topic.comments %}
+<div class='comment_div'>
+    <p class='date'>{{ comment.post_time }}</p>
+    <p>{{ comment.content|e }}</p>
+</div>
+{% endfor %}
+Leave a comment:<br>
+<form action='/addcomment' method='post'>
+    <input type='hidden' name='topic_id' value='{{ topic._id }}'>
+    <textarea name='content'></textarea><br>
+    <input type='submit'>
+</form>
+<hr>
+<a href='/'>Home</a>
+{% endblock %}

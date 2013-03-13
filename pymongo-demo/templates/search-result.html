@@ -1,0 +1,107 @@
+{% extends 'base.html' %}
+
+{% block title %}Result{% endblock %}
+
+{% block head %}
+<style>
+.tag_span {
+    text-decoration: underline;
+    cursor: pointer;
+    margin-left: 8px;
+}
+</style>
+<script src='/static/utils.js'></script>
+<script>
+window.onload = function() {
+  (function() {
+    var args = parseArgs();
+    var tags = args.tags ? args.tags.split(',') : [];
+    var tags_args = document.getElementById('tags_args');
+    if (tags.length == 0) {
+      return tags_args.innerHTML = 'no tag specified'.italics();
+    }
+    var tag;
+    for (var i = 0; i < tags.length; ++i) {
+      tag = document.createElement('span');
+      tag.innerHTML = tags[i];
+      tag.className = 'tag_span';
+      tag.onclick = function() {
+        var this_text = this.innerHTML;
+        args.tags = tags.filter(function(t) {
+          return t !== this_text;
+        });
+        submit(args);
+      };
+      tags_args.appendChild(tag);
+    }
+  })();
+
+  function submit(args) {
+    window.location = '/search' + makeArgs(args);
+  }
+  document.getElementById('name_submit').onclick = function() {
+    var name = document.getElementById('name_input').value.trim();
+    var args = parseArgs();
+    if (name.length === 0) {
+      delete args.name;
+    }
+    args.name = name;
+    submit(args);
+  }
+  document.getElementById('tag_submit').onclick = function() {
+    var tag = document.getElementById('tag_input').value.trim();
+    if (tag.length === 0) {
+      return;
+    }
+    var args = parseArgs();
+    var tags = args.tags ? args.tags.split(',') : [];
+    tags.push(tag);
+    args.tags = tags.join(',');
+    submit(args);
+  }
+};
+</script>
+<link rel='stylesheet' href='/static/message.css' type='text/css'>
+{% endblock %}
+
+{% block body %}
+{% for tag in tags %}
+
+{% endfor %}
+<table>
+    <thead>
+        <tr><th>Detail search</th></tr>
+    </thead>
+    <tr>
+        <td>
+            By name
+        </td>
+        <td>
+            <input type='text' id='name_input'
+             placeholder='Not constraint if left blank'>
+        </td>
+        <td>
+            <input type='submit' id='name_submit'>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            Add a tag to match
+        </td>
+        <td>
+            <input type='text' id='tag_input'>
+        </td>
+        <td>
+            <input type='submit' id='tag_submit'>
+        </td>
+    </tr>
+    <tr>
+        <td style='font-size: 0.7em' colspan='2'>
+            Current tags: <span id='tags_args'></span> | click to remove
+        </td>
+    </tr>
+</table>
+<hr>
+{% include 'list-topics.html' %}
+<a href='/'>Home</a>
+{% endblock %}

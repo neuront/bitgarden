@@ -1,0 +1,13 @@
+.message {
+    border-bottom: 1px dotted black;
+}
+
+.date {
+    margin-left: 20px;
+    font-size: 0.7em;
+}
+
+.tag {
+    font-size: 0.7em;
+    margin-left: 8px;
+}

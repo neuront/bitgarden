@@ -1,5 +1,7 @@
 *.pyc
 *.o
 *.out
+tmp.*
+
 button-solid/Makefile
 qscrollbar-tooltip/Makefile

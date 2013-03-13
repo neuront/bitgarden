@@ -1,0 +1,12 @@
+{% for topic in topics %}
+<div class='topic'>
+    <p>{{ topic.title|e }}</p>
+    <p class='date'><a href='/topic?id={{ topic._id }}'>{{ topic.post_time }}</a></p>
+    <p>
+        {% for tag in topic.tags %}
+        <span class='tag'>{{ tag|e }}</span>
+        {% endfor %}
+    </p>
+    <p>{{ topic.content|e }}</p>
+</div>
+{% endfor %}
