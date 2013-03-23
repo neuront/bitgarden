@@ -1,0 +1,12 @@
+{% extends './base.html' %}
+
+{% block title %}Index{% endblock %}
+
+{% block head %}{% endblock %}
+
+{% block body %}
+{{ t.echo_0() }}
+{{ t.echo_1(', World!') }}
+{{ t.echo_1(', <b>World</b>!') }}
+{{ t.echo_1(', <b>World</b>!')|escape }}
+{% endblock %}

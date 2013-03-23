@@ -5,3 +5,5 @@ tmp.*
 
 button-solid/Makefile
 qscrollbar-tooltip/Makefile
+
+jinja/node_modules
