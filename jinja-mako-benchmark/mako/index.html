@@ -1,0 +1,13 @@
+<%inherit file='base.html'/>
+
+<%def name='title()'>Index</%def>
+
+<%def name='head()'></%def>
+
+<%def name='body()'>
+    %for p in posts:
+        <h1>${ p['title']|h }</h1>
+        <div>${ p['content']|h }</div>
+        <hr>
+    %endfor
+</%def>

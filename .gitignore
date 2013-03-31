@@ -6,4 +6,4 @@ tmp.*
 button-solid/Makefile
 qscrollbar-tooltip/Makefile
 
-jinja/node_modules
+jinja-mako-benchmark/node_modules
